@@ -8,34 +8,16 @@ namespace Test.Controllers
 {
     public class Sort
     {
-        private int order;
-
-        private Sort()
+        public static string cyclicSort(char[] input, int ordering)
         {
-            order = 0;
+            return cyclicSort(input, ordering, ordering);
         }
 
-        private static Sort iSort;
-
-        public static Sort getSort()
-        {
-            if (iSort == null)
-            {
-                Sort.iSort = new Sort();
-            }
-            return Sort.iSort;
-        }
-
-        public string cyclicSort(char[] input, int ordering)
+        private static string cyclicSort(char[] input, int ordering, int originalOrdering)
         {
             if (input.Length <= 1)
             {
                 return new string(input);
-            }
-
-            if (this.order == 0)
-            {
-                this.order = ordering;
             }
 
             int currentOrdering;
@@ -55,18 +37,18 @@ namespace Test.Controllers
             else
             {
                 currentOrdering--;
-            } 
+            }
 
             var outputChar = input[currentOrdering];
-            
+
             input = input.Where((source, index) => index != currentOrdering).ToArray();
 
-            var output = this.cyclicSort(input, currentOrdering + this.order);
+            var output = cyclicSort(input, currentOrdering + originalOrdering, originalOrdering);
 
             return (outputChar + output); ;
         }
 
-        public string cyclicReverseSort(char[] input, int ordering)
+        public static string cyclicSortReverse(char[] input, int ordering)
         {
             char[] output = new char[input.Length];
             int currentOrdering = 0;
