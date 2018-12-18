@@ -2,7 +2,7 @@
 
 Installtion
 =============
-Open the project in Visual Studio and Install the packages
+Open the solution in Visual Studio and Install the packages
 
 Special notes
 =============
